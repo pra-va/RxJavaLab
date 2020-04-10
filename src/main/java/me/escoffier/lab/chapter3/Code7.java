@@ -10,7 +10,10 @@ import static me.escoffier.superheroes.Helpers.fs;
 public class Code7 {
 
     public static void main(String[] args) {
-        fs()
+        fs().rxWriteFile("test.txt", Buffer.buffer("Hello, this is a String."))
+            .subscribe(() -> System.out.println("OK"),
+                    Throwable::printStackTrace)
+
             // Use rxWriteFile to write a message to a file
             // This method accept a buffer, create a buffer with Buffer.buffer("message")
 

@@ -2,6 +2,7 @@ package me.escoffier.lab.chapter6;
 
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
+import io.reactivex.schedulers.Schedulers;
 import io.vertx.core.Context;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
@@ -48,6 +49,8 @@ public class Code8 {
             log("Completing");
             emitter.onComplete();
         })
+                .subscribeOn(Schedulers.io())
+                .observeOn(contextScheduler)
             // execute the emitter on the io scheduler
             // execute the subscriber on the context thread
             ;

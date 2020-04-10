@@ -12,6 +12,7 @@ public class Code5 {
             subscriber.onNext("Catwoman");
             // Inject an error using the onError
             // method
+            subscriber.onError(new Exception("Something is wrong!"));
             subscriber.onNext("Elektra");
             // Notify the completion
             subscriber.onComplete();

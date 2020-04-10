@@ -10,7 +10,7 @@ public class Code1 {
         SuperHeroesService.run();
 
         villains_names()
-            // Accept only super villains containing the word "Queen"
+                .filter(item -> item.contains("Queen"))
             .subscribe(System.out::println);
 
     }

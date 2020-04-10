@@ -33,12 +33,16 @@ public class Code6 extends AbstractSuperAPI {
     @Override
     public Maybe<Character> findByName(String name) {
         // To implement
-        return super.findByName(name);
+        return load()
+                .filter(hero -> hero.getName().equals(name))
+                .firstElement();
     }
 
     @Override
     public Single<Character> findByNameOrError(String name) {
         // To implement
-        return super.findByNameOrError(name);
+        return load()
+                .filter(hero -> hero.getName().equals(name))
+                .firstOrError();
     }
 }

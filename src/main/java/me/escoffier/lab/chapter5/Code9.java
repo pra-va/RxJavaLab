@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import io.reactivex.Observable;
+import io.reactivex.functions.Action;
 
 public class Code9 {
 
@@ -25,7 +26,7 @@ public class Code9 {
 		}
 		return Observable.fromIterable(stream)
 			.map(path -> path.toFile().getName())
-            // ...
+            .doFinally(() -> stream.close())
         ;
 	}
 }

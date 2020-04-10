@@ -16,6 +16,8 @@ public class Code14 {
             .rxSend()
             .map(HttpResponse::body)
             .map(Character::getName)
+//                .onErrorReturnItem("Something bad happened")
+                .onErrorReturn(err -> err.getMessage())
             .subscribe(
                 name -> System.out.println("Retrieved: " + name),
                 err -> System.err.println("Oh no... something bad happened: " + err)

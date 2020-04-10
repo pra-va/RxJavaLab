@@ -35,8 +35,11 @@ public class Code10 {
             
     }
 
-    private static Single<JsonObject> getHero(String s) {
-        return client().get("/heroes/" + s).rxSend().map(HttpResponse::bodyAsJsonObject);
+    public static Single<JsonObject> getHero(String s) {
+        return client()
+                .get("/heroes/" + s)
+                .rxSend()
+                .map(HttpResponse::bodyAsJsonObject);
     }
 
 }

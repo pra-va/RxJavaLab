@@ -24,6 +24,15 @@ public class Code11 {
 		return Observable.<Path>create(emitter -> {
 			DirectoryStream<Path> stream;
 			// Emit the directory stream here.
+			try {
+				stream = Files.newDirectoryStream(DIRECTORY);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return;
+			}
+			for(Path path : stream) {
+				emitter.onNext(path);
+			}
 		}).map(path -> path.toFile().getName());
 	}
 

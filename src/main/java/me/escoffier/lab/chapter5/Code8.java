@@ -23,11 +23,11 @@ public class Code8 {
                 new SimpleFileVisitor<Path>() {
                     @Override
                     public FileVisitResult visitFile(Path path, BasicFileAttributes attr) {
-                        // ...
+                        emitter.onNext(path.toFile().getName());
                         return FileVisitResult.CONTINUE;
                     }
                 });
-            // ...
+            emitter.onComplete();
         });
     }
 }

@@ -21,7 +21,7 @@ public class Code2 {
   public static void main(String[] args) {
     Observable<Object> observable = Observable.create(emitter -> {
       for (String superHero : SUPER_HEROES) {
-        sleep(30); // Introduce fake latency
+        sleep(1000); // Introduce fake latency
         log("Emitting: " + superHero);
         emitter.onNext(superHero);
       }

@@ -1,13 +1,17 @@
 package me.escoffier.lab.chapter6;
 
 import io.reactivex.Observable;
+import io.reactivex.Scheduler;
+import io.reactivex.schedulers.Schedulers;
 import io.vertx.core.json.JsonObject;
+import me.escoffier.superheroes.Helpers;
 import me.escoffier.superheroes.SuperHeroesService;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.Executors;
 
 import static me.escoffier.superheroes.Helpers.log;
 
@@ -18,6 +22,8 @@ public class Code7 {
     public static void main(String[] args) {
 
         SuperHeroesService.run(false);
+
+        Scheduler scheduler = Schedulers.from(Executors.newFixedThreadPool(10, Helpers.threadFactory));
 
         Observable<String> observable = Observable.<String>create(emitter -> {
             for (int superHeroId : SUPER_HEROES_BY_ID) {
@@ -42,8 +48,7 @@ public class Code7 {
             emitter.onComplete();
         })
             // USe the subscrbeOn operator to use the io scheduler.
-
-            ;
+            .subscribeOn(Schedulers.io());
 
         log("---------------- Subscribing");
         observable

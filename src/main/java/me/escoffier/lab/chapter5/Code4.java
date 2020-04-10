@@ -19,6 +19,7 @@ public class Code4 extends AbstractSuperAPI {
     public Flowable<Character> heroes() {
         return load()
             // Select only heroes
+            .filter(character -> !character.isVillain())
         ;
     }
 
@@ -26,6 +27,7 @@ public class Code4 extends AbstractSuperAPI {
     public Flowable<Character> villains() {
         return load()
             // Select only villains
+                .filter(character -> character.isVillain())
         ;
     }
 }
